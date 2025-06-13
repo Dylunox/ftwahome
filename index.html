@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -245,6 +245,39 @@
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
         }
 
+        /* Burger Menu Button */
+        .burger-menu {
+            background: #b45309;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .burger-menu:hover {
+            background: #92400e;
+            transform: scale(1.05);
+        }
+
+        .burger-menu i {
+            font-size: 1.4rem;
+            color: #ffffff;
+        }
+
+        body.dark-mode .burger-menu {
+            background: #3b82f6;
+        }
+
+        body.dark-mode .burger-menu:hover {
+            background: #1d4ed8;
+        }
+
         /* Theme Toggle */
         .theme-toggle {
             background: #b45309;
@@ -274,6 +307,130 @@
 
         body.dark-mode .theme-toggle:hover {
             background: #1d4ed8;
+        }
+
+        /* Sidebar Menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 350px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        body.dark-mode .sidebar {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-mode .sidebar-header {
+            border-bottom-color: #334155;
+        }
+
+        .sidebar-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+
+        body.dark-mode .sidebar-title {
+            color: #60a5fa;
+        }
+
+        .sidebar-close {
+            background: #ef4444;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-close:hover {
+            background: #dc2626;
+            transform: scale(1.1);
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+
+        .sidebar-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: #1e293b;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer;
+        }
+
+        .sidebar-menu-item:hover {
+            background: #f8fafc;
+            color: #1e3a8a;
+            transform: translateX(-5px);
+        }
+
+        body.dark-mode .sidebar-menu-item {
+            color: #e2e8f0;
+            border-bottom-color: #334155;
+        }
+
+        body.dark-mode .sidebar-menu-item:hover {
+            background: #1e293b;
+            color: #60a5fa;
+        }
+
+        .sidebar-menu-item i {
+            margin-left: 15px;
+            font-size: 1.2rem;
+            width: 25px;
+        }
+
+        .sidebar-menu-item span {
+            font-weight: 500;
+        }
+
+        /* Sidebar Overlay */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Main Container */
@@ -474,60 +631,76 @@
             color: #94a3b8;
         }
 
-        /* Questions Section */
-        .questions-section {
-            background: rgba(255, 255, 255, 0.9);
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1002;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #f8fafc;
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            display: none;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            position: relative;
         }
 
-        .questions-section.active {
-            display: block;
-            animation: fadeInUp 0.5s ease;
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+            opacity: 1;
         }
 
-        body.dark-mode .questions-section {
-            background: rgba(15, 23, 42, 0.95);
+        body.dark-mode .modal-content {
+            background: #1e293b;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .questions-header {
+        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 2px solid #e2e8f0;
         }
 
-        body.dark-mode .questions-header {
+        body.dark-mode .modal-header {
             border-bottom-color: #334155;
         }
 
-        .questions-title {
+        .modal-title {
             font-size: 2rem;
             font-weight: 700;
             color: #1e3a8a;
         }
 
-        body.dark-mode .questions-title {
+        body.dark-mode .modal-title {
             color: #60a5fa;
         }
 
-        .close-questions {
+        .modal-close-btn {
             background: #ef4444;
             border: none;
             padding: 10px 15px;
@@ -535,35 +708,37 @@
             color: #ffffff;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 1.1rem;
         }
 
-        .close-questions:hover {
+        .modal-close-btn:hover {
             background: #dc2626;
             transform: scale(1.05);
         }
 
-        /* Question Cards */
-        .question-card {
-            background: #f8fafc;
+        /* Question Cards within Modal */
+        .modal-question-card {
+            background: #ffffff;
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 20px;
-            border-left: 4px solid #1e3a8a;
+            border-left: 4px solid #b45309;
             transition: all 0.3s ease;
             cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
 
-        .question-card:hover {
+        .modal-question-card:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
-        body.dark-mode .question-card {
-            background: #1e293b;
+        body.dark-mode .modal-question-card {
+            background: #0f172a;
             border-left-color: #3b82f6;
         }
 
-        .question-text {
+        .modal-question-text {
             font-size: 1.2rem;
             font-weight: 600;
             color: #1e293b;
@@ -571,36 +746,26 @@
             line-height: 1.6;
         }
 
-        body.dark-mode .question-text {
+        body.dark-mode .modal-question-text {
             color: #e2e8f0;
         }
 
-        .answer-text {
-            font-size: 1rem;
+        .modal-answer-text {
+            font-size: 1.1rem;
             color: #475569;
             line-height: 1.8;
             display: none;
-            padding-top: 15px;
-            border-top: 1px solid #e2e8f0;
-            margin-top: 15px;
         }
 
-        .answer-text.show {
+        .modal-question-card.expanded .modal-answer-text {
             display: block;
-            animation: fadeIn 0.3s ease;
         }
 
-        body.dark-mode .answer-text {
+        body.dark-mode .modal-answer-text {
             color: #94a3b8;
-            border-top-color: #334155;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .question-meta {
+        .modal-question-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -609,17 +774,17 @@
             color: #64748b;
         }
 
-        body.dark-mode .question-meta {
+        body.dark-mode .modal-question-meta {
             color: #94a3b8;
         }
 
-        .question-actions {
+        .modal-question-actions {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .copy-btn, .share-btn {
+        .modal-copy-btn, .modal-share-btn {
             background: transparent;
             border: none;
             color: #64748b;
@@ -630,22 +795,22 @@
             font-size: 0.9rem;
         }
 
-        .copy-btn:hover, .share-btn:hover {
+        .modal-copy-btn:hover, .modal-share-btn:hover {
             background: #f1f5f9;
             color: #1e3a8a;
         }
 
-        body.dark-mode .copy-btn:hover, 
-        body.dark-mode .share-btn:hover {
+        body.dark-mode .modal-copy-btn:hover, 
+        body.dark-mode .modal-share-btn:hover {
             background: #334155;
             color: #60a5fa;
         }
 
-        .expand-icon {
+        .modal-expand-icon {
             transition: transform 0.3s ease;
         }
 
-        .question-card.expanded .expand-icon {
+        .modal-question-card.expanded .modal-expand-icon {
             transform: rotate(180deg);
         }
 
@@ -677,15 +842,31 @@
                 padding: 20px;
             }
 
-            .questions-header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .modal-question-text {
+                font-size: 1rem;
+            }
+
+            .modal-answer-text {
+                font-size: 0.9rem;
             }
 
             .back-btn {
                 padding: 8px 15px;
                 font-size: 0.9rem;
+            }
+
+            .sidebar {
+                width: 300px;
+                right: -300px;
             }
         }
 
@@ -774,6 +955,22 @@
     <!-- Gradient Background -->
     <div class="gradient-bg"></div>
 
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3 class="sidebar-title">أقسام الفتاوى</h3>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar-menu" id="sidebarMenu">
+            <!-- Categories will be loaded here dynamically -->
+        </div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar">
         <a href="#" class="logo">مكتبة الفتوى</a>
@@ -782,6 +979,9 @@
                 <i class="fas fa-arrow-right"></i>
                 العودة للرئيسية
             </a>
+            <button class="burger-menu" id="burgerMenu">
+                <i class="fas fa-bars"></i>
+            </button>
             <button class="theme-toggle" id="themeToggle">
                 <i class="fas fa-moon" id="themeIcon"></i>
             </button>
@@ -810,17 +1010,19 @@
                 <!-- Categories will be loaded here dynamically -->
             </div>
         </div>
+    </div>
 
-        <!-- Questions Section -->
-        <div class="questions-section" id="questionsSection">
-            <div class="questions-header">
-                <h2 class="questions-title" id="questionsTitle">الأسئلة والأجوبة</h2>
-                <button class="close-questions" id="closeQuestions">
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="fatwaModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalCategoryTitle"></h2>
+                <button class="modal-close-btn" id="modalCloseBtn">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div id="questionsContainer">
-                <!-- Questions will be loaded here dynamically -->
+            <div id="modalQuestionsContainer">
+                <!-- Fatwas for the selected category will be loaded here -->
             </div>
         </div>
     </div>
@@ -867,8 +1069,18 @@
             // Search functionality
             document.getElementById('searchInput').addEventListener('input', handleSearch);
 
-            // Close questions section
-            document.getElementById('closeQuestions').addEventListener('click', closeQuestionsSection);
+            // Burger menu
+            document.getElementById('burgerMenu').addEventListener('click', openSidebar);
+            document.getElementById('sidebarClose').addEventListener('click', closeSidebar);
+            document.getElementById('sidebarOverlay').addEventListener('click', closeSidebar);
+
+            // Modal close button
+            document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+            document.getElementById('fatwaModal').addEventListener('click', function(event) {
+                if (event.target === this) {
+                    closeModal();
+                }
+            });
 
             // Scroll to top
             document.getElementById('scrollTop').addEventListener('click', scrollToTop);
@@ -887,6 +1099,7 @@
                 fatwasData = await fetchDataFromGoogleSheets();
                 
                 renderCategories();
+                renderSidebarMenu();
             } catch (error) {
                 console.error('Error loading data:', error);
                 showErrorMessage('حدث خطأ في تحميل البيانات. يرجى المحاولة مرة أخرى.');
@@ -1054,6 +1267,328 @@
                             additional: ""
                         }
                     ]
+                },
+                {
+                    category: "الركوع والسجود",
+                    icon: "fas fa-hands-praying",
+                    count: 25,
+                    questions: [
+                        {
+                            id: 12,
+                            question: "ما حكم من نسي الركوع في الصلاة؟",
+                            answer: "من نسي الركوع في الصلاة، فإن تذكره قبل السجود أتى به، وإن تذكره بعد السجود بطلت الركعة وعليه الإتيان بركعة بدلها...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "السهو في الصلاة",
+                    icon: "fas fa-undo",
+                    count: 10,
+                    questions: [
+                        {
+                            id: 13,
+                            question: "ماذا يفعل من سها في صلاته؟",
+                            answer: "من سها في صلاته فعليه سجود السهو بعد السلام...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "صلاة الجماعة",
+                    icon: "fas fa-users",
+                    count: 30,
+                    questions: [
+                        {
+                            id: 14,
+                            question: "ما فضل صلاة الجماعة؟",
+                            answer: "صلاة الجماعة أفضل من صلاة الفذ بسبع وعشرين درجة...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "صلاة الجمعة",
+                    icon: "fas fa-calendar-alt",
+                    count: 12,
+                    questions: [
+                        {
+                            id: 15,
+                            question: "على من تجب صلاة الجمعة؟",
+                            answer: "تجب صلاة الجمعة على كل مسلم ذكر، حر، بالغ، مقيم، غير معذور...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "صلاة المسافر",
+                    icon: "fas fa-plane",
+                    count: 8,
+                    questions: [
+                        {
+                            id: 16,
+                            question: "كيف يصلي المسافر؟",
+                            answer: "يجوز للمسافر قصر الصلاة الرباعية وجمع الصلوات...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "صلاة المريض",
+                    icon: "fas fa-procedures",
+                    count: 7,
+                    questions: [
+                        {
+                            id: 17,
+                            question: "كيف يصلي المريض؟",
+                            answer: "يصلي المريض قائماً إن استطاع، فإن لم يستطع فقاعداً، فإن لم يستطع فعلى جنبه...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "صلاة الكسوف والخسوف",
+                    icon: "fas fa-cloud-sun",
+                    count: 3,
+                    questions: [
+                        {
+                            id: 18,
+                            question: "كيف تصلى صلاة الكسوف؟",
+                            answer: "صلاة الكسوف ركعتان، في كل ركعة ركوعان...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "صلاة الاستسقاء",
+                    icon: "fas fa-cloud-showers-heavy",
+                    count: 2,
+                    questions: [
+                        {
+                            id: 19,
+                            question: "ما هي صلاة الاستسقاء؟",
+                            answer: "صلاة الاستسقاء هي صلاة تطلب فيها الأمة من الله السقيا عند الجدب...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "صلاة العيدين",
+                    icon: "fas fa-moon",
+                    count: 6,
+                    questions: [
+                        {
+                            id: 20,
+                            question: "كيف تصلى صلاة العيدين؟",
+                            answer: "صلاة العيدين ركعتان، يكبر في الأولى سبع تكبيرات وفي الثانية خمس...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "صلاة الجنازة",
+                    icon: "fas fa-crosshairs",
+                    count: 9,
+                    questions: [
+                        {
+                            id: 21,
+                            question: "كيف تصلى صلاة الجنازة؟",
+                            answer: "صلاة الجنازة أربع تكبيرات، لا ركوع فيها ولا سجود...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "الزكاة",
+                    icon: "fas fa-hand-holding-usd",
+                    count: 35,
+                    questions: [
+                        {
+                            id: 22,
+                            question: "على من تجب الزكاة؟",
+                            answer: "تجب الزكاة على كل مسلم ملك نصاباً وحال عليه الحول...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "الصيام",
+                    icon: "fas fa-moon",
+                    count: 40,
+                    questions: [
+                        {
+                            id: 23,
+                            question: "ما هي شروط وجوب الصيام؟",
+                            answer: "يشترط لوجوب الصيام: الإسلام، العقل، البلوغ، الإقامة، القدرة...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "الحج والعمرة",
+                    icon: "fas fa-kaaba",
+                    count: 28,
+                    questions: [
+                        {
+                            id: 24,
+                            question: "ما هي أركان الحج؟",
+                            answer: "أركان الحج: الإحرام، الوقوف بعرفة، طواف الإفاضة، السعي بين الصفا والمروة...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "المعاملات",
+                    icon: "fas fa-handshake",
+                    count: 50,
+                    questions: [
+                        {
+                            id: 25,
+                            question: "ما حكم الربا في الإسلام؟",
+                            answer: "الربا محرم في الإسلام بجميع أنواعه...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "الأسرة",
+                    icon: "fas fa-home",
+                    count: 20,
+                    questions: [
+                        {
+                            id: 26,
+                            question: "ما هي حقوق الزوجة على زوجها؟",
+                            answer: "للزوجة حقوق على زوجها منها: النفقة، المهر، المعاشرة بالمعروف...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "الأطعمة والأشربة",
+                    icon: "fas fa-utensils",
+                    count: 15,
+                    questions: [
+                        {
+                            id: 27,
+                            question: "ما حكم أكل لحم الخنزير؟",
+                            answer: "يحرم أكل لحم الخنزير في الإسلام...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "الأيمان والنذور",
+                    icon: "fas fa-gavel",
+                    count: 10,
+                    questions: [
+                        {
+                            id: 28,
+                            question: "ما هي كفارة اليمين؟",
+                            answer: "كفارة اليمين: إطعام عشرة مساكين أو كسوتهم أو تحرير رقبة، فإن لم يجد فصيام ثلاثة أيام...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "الحدود والقصاص",
+                    icon: "fas fa-balance-scale",
+                    count: 5,
+                    questions: [
+                        {
+                            id: 29,
+                            question: "ما هي عقوبة السرقة في الإسلام؟",
+                            answer: "عقوبة السرقة في الإسلام هي قطع اليد بشروطها...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "الجهاد",
+                    icon: "fas fa-shield-alt",
+                    count: 7,
+                    questions: [
+                        {
+                            id: 30,
+                            question: "ما هو الجهاد في سبيل الله؟",
+                            answer: "الجهاد في سبيل الله هو بذل الجهد في إعلاء كلمة الله...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "اللباس والزينة",
+                    icon: "fas fa-tshirt",
+                    count: 14,
+                    questions: [
+                        {
+                            id: 31,
+                            question: "ما حكم لبس الحرير للرجال؟",
+                            answer: "يحرم لبس الحرير الخالص للرجال في الإسلام...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "الطب والتداوي",
+                    icon: "fas fa-medkit",
+                    count: 8,
+                    questions: [
+                        {
+                            id: 32,
+                            question: "ما حكم التداوي بالأعشاب؟",
+                            answer: "يجوز التداوي بالأعشاب ما لم تكن ضارة أو محرمة...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "الرؤى والأحلام",
+                    icon: "fas fa-cloud",
+                    count: 3,
+                    questions: [
+                        {
+                            id: 33,
+                            question: "ما حكم تفسير الأحلام في الإسلام؟",
+                            answer: "تفسير الأحلام علم شرعي، ولكن لا يجوز الخوض فيه بغير علم...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
+                },
+                {
+                    category: "متفرقات",
+                    icon: "fas fa-ellipsis-h",
+                    count: 20,
+                    questions: [
+                        {
+                            id: 34,
+                            question: "ما حكم تهنئة الكفار بأعيادهم؟",
+                            answer: "لا يجوز تهنئة الكفار بأعيادهم التي هي من شعائر دينهم...",
+                            source: "فتاوى سماحة الشيخ العلامة أحمد بن حمد الخليلي",
+                            additional: ""
+                        }
+                    ]
                 }
             ];
         }
@@ -1062,432 +1597,206 @@
             const categoriesGrid = document.getElementById('categoriesGrid');
             categoriesGrid.innerHTML = '';
 
-            fatwasData.forEach((category, index) => {
+            fatwasData.forEach(categoryData => {
                 const categoryCard = document.createElement('div');
-                categoryCard.className = 'category-card';
+                categoryCard.classList.add('category-card');
+                categoryCard.dataset.category = categoryData.category;
                 categoryCard.innerHTML = `
-                    <i class="${category.icon} category-icon"></i>
-                    <h3 class="category-title">${category.category}</h3>
-                    <p class="category-count">${category.count || category.questions.length} سؤال</p>
+                    <i class="${categoryData.icon} category-icon"></i>
+                    <h3 class="category-title">${categoryData.category}</h3>
+                    <p class="category-count">${categoryData.count} فتوى</p>
                 `;
-
-                categoryCard.addEventListener('click', () => openCategory(category, categoryCard));
+                categoryCard.addEventListener('click', () => openModal(categoryData.category));
                 categoriesGrid.appendChild(categoryCard);
             });
         }
 
-        function openCategory(category, cardElement) {
-            // Remove active class from all cards
-            document.querySelectorAll('.category-card').forEach(card => {
-                card.classList.remove('active');
-            });
+        function renderSidebarMenu() {
+            const sidebarMenu = document.getElementById('sidebarMenu');
+            sidebarMenu.innerHTML = '';
 
-            // Add active class to clicked card
-            cardElement.classList.add('active');
-
-            // Set current category
-            currentCategory = category;
-
-            // Update questions section
-            document.getElementById('questionsTitle').textContent = category.category;
-            renderQuestions(category.questions);
-
-            // Show questions section
-            document.getElementById('questionsSection').classList.add('active');
-
-            // Scroll to questions section
-            document.getElementById('questionsSection').scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-
-        function renderQuestions(questions) {
-            const questionsContainer = document.getElementById('questionsContainer');
-            
-            if (questions.length === 0) {
-                questionsContainer.innerHTML = `
-                    <div class="error-message">
-                        <i class="fas fa-info-circle"></i>
-                        لا توجد أسئلة في هذا القسم حالياً
-                    </div>
+            fatwasData.forEach(categoryData => {
+                const menuItem = document.createElement('div');
+                menuItem.classList.add('sidebar-menu-item');
+                menuItem.innerHTML = `
+                    <i class="${categoryData.icon}"></i>
+                    <span>${categoryData.category}</span>
                 `;
-                return;
-            }
-
-            questionsContainer.innerHTML = '';
-
-            questions.forEach((item, index) => {
-                const questionCard = document.createElement('div');
-                questionCard.className = 'question-card';
-                questionCard.innerHTML = `
-                    <div class="question-text">${item.question}</div>
-                    <div class="answer-text" id="answer-${index}">
-                        ${item.answer}
-                        ${item.additional ? `<div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-style: italic; color: #64748b;">${item.additional}</div>` : ''}
-                    </div>
-                    <div class="question-meta">
-                        <span><i class="fas fa-book"></i> ${item.source || 'مصدر غير محدد'}</span>
-                        <div class="question-actions">
-                            <button class="copy-btn" onclick="copyToClipboard('${item.question}', '${item.answer}')" title="نسخ السؤال والجواب">
-                                <i class="fas fa-copy"></i>
-                            </button>
-                            <button class="share-btn" onclick="shareQuestion('${item.question}', '${item.answer}')" title="مشاركة">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                            <i class="fas fa-chevron-down expand-icon"></i>
-                        </div>
-                    </div>
-                `;
-
-                questionCard.addEventListener('click', (e) => {
-                    // Don't toggle if clicking on action buttons
-                    if (!e.target.closest('.question-actions')) {
-                        toggleAnswer(questionCard, index);
-                    }
+                menuItem.addEventListener('click', () => {
+                    closeSidebar();
+                    openModal(categoryData.category);
                 });
-                questionsContainer.appendChild(questionCard);
+                sidebarMenu.appendChild(menuItem);
             });
-        }
-
-        function toggleAnswer(card, index) {
-            const answer = document.getElementById(`answer-${index}`);
-            const isExpanded = card.classList.contains('expanded');
-
-            if (isExpanded) {
-                answer.classList.remove('show');
-                card.classList.remove('expanded');
-            } else {
-                answer.classList.add('show');
-                card.classList.add('expanded');
-            }
-        }
-
-        function closeQuestionsSection() {
-            document.getElementById('questionsSection').classList.remove('active');
-            document.querySelectorAll('.category-card').forEach(card => {
-                card.classList.remove('active');
-            });
-            currentCategory = null;
-        }
-
-        function handleSearch() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-            
-            if (searchTerm === '') {
-                renderCategories();
-                closeQuestionsSection();
-                return;
-            }
-
-            // Filter categories and questions based on search term
-            const filteredData = fatwasData.filter(category => {
-                const categoryMatch = category.category.toLowerCase().includes(searchTerm);
-                const questionsMatch = category.questions.some(q => 
-                    q.question.toLowerCase().includes(searchTerm) || 
-                    q.answer.toLowerCase().includes(searchTerm)
-                );
-                return categoryMatch || questionsMatch;
-            });
-
-            // If we have results, show them
-            if (filteredData.length > 0) {
-                renderFilteredResults(filteredData, searchTerm);
-            } else {
-                showNoResults();
-            }
-        }
-
-        function renderFilteredResults(filteredData, searchTerm) {
-            const categoriesGrid = document.getElementById('categoriesGrid');
-            categoriesGrid.innerHTML = '';
-
-            filteredData.forEach((category, index) => {
-                const matchingQuestions = category.questions.filter(q => 
-                    q.question.toLowerCase().includes(searchTerm) || 
-                    q.answer.toLowerCase().includes(searchTerm)
-                );
-
-                const categoryCard = document.createElement('div');
-                categoryCard.className = 'category-card';
-                categoryCard.innerHTML = `
-                    <i class="${category.icon} category-icon"></i>
-                    <h3 class="category-title">${category.category}</h3>
-                    <p class="category-count">${matchingQuestions.length} نتيجة</p>
-                `;
-
-                categoryCard.addEventListener('click', () => {
-                    const filteredCategory = {
-                        ...category,
-                        questions: matchingQuestions
-                    };
-                    openCategory(filteredCategory, categoryCard);
-                });
-                
-                categoriesGrid.appendChild(categoryCard);
-            });
-        }
-
-        function showNoResults() {
-            const categoriesGrid = document.getElementById('categoriesGrid');
-            categoriesGrid.innerHTML = `
-                <div class="error-message" style="grid-column: 1 / -1;">
-                    <i class="fas fa-search"></i>
-                    لم يتم العثور على نتائج مطابقة لبحثك
-                </div>
-            `;
-        }
-
-        function showErrorMessage(message) {
-            const categoriesGrid = document.getElementById('categoriesGrid');
-            categoriesGrid.innerHTML = `
-                <div class="error-message" style="grid-column: 1 / -1;">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    ${message}
-                </div>
-            `;
         }
 
         function toggleTheme() {
             isDarkMode = !isDarkMode;
-            document.body.classList.toggle('dark-mode');
-            
-            const themeIcon = document.getElementById('themeIcon');
-            themeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
-            
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            document.getElementById('themeIcon').className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
             localStorage.setItem('darkMode', isDarkMode);
         }
 
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        function handleSearch(event) {
+            const searchTerm = event.target.value.toLowerCase();
+            const categoriesGrid = document.getElementById('categoriesGrid');
+            categoriesGrid.innerHTML = '';
+
+            const filteredCategories = fatwasData.filter(categoryData => 
+                categoryData.category.toLowerCase().includes(searchTerm) ||
+                categoryData.questions.some(q => 
+                    q.question.toLowerCase().includes(searchTerm) || 
+                    q.answer.toLowerCase().includes(searchTerm)
+                )
+            );
+
+            if (filteredCategories.length === 0) {
+                categoriesGrid.innerHTML = '<p style="text-align: center; color: #64748b;">لا توجد نتائج مطابقة لبحثك.</p>';
+                if (isDarkMode) {
+                    categoriesGrid.querySelector('p').style.color = '#94a3b8';
+                }
+                return;
+            }
+
+            filteredCategories.forEach(categoryData => {
+                const categoryCard = document.createElement('div');
+                categoryCard.classList.add('category-card');
+                categoryCard.dataset.category = categoryData.category;
+                categoryCard.innerHTML = `
+                    <i class="${categoryData.icon} category-icon"></i>
+                    <h3 class="category-title">${categoryData.category}</h3>
+                    <p class="category-count">${categoryData.count} فتوى</p>
+                `;
+                categoryCard.addEventListener('click', () => openModal(categoryData.category));
+                categoriesGrid.appendChild(categoryCard);
             });
+        }
+
+        function showErrorMessage(message) {
+            const mainContainer = document.querySelector('.main-container');
+            let errorMessageDiv = document.getElementById('errorMessage');
+            if (!errorMessageDiv) {
+                errorMessageDiv = document.createElement('div');
+                errorMessageDiv.id = 'errorMessage';
+                errorMessageDiv.classList.add('error-message');
+                mainContainer.prepend(errorMessageDiv);
+            }
+            errorMessageDiv.textContent = message;
+            errorMessageDiv.style.display = 'block';
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function handleScroll() {
-            const scrollTop = document.getElementById('scrollTop');
-            if (window.pageYOffset > 300) {
-                scrollTop.classList.add('show');
+            const scrollTopBtn = document.getElementById('scrollTop');
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('show');
             } else {
-                scrollTop.classList.remove('show');
+                scrollTopBtn.classList.remove('show');
             }
         }
 
-        // Additional utility functions for Google Sheets integration
-        async function fetchAllSheetsData(spreadsheetId) {
-            try {
-                // This would require a public Google Sheets or API key
-                // For now, we'll implement a CSV-based approach as fallback
-                
-                // Try to fetch as CSV export (if sheet is public)
-                const csvUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=csv&gid=0`;
-                const response = await fetch(csvUrl);
-                
-                if (response.ok) {
-                    const csvText = await response.text();
-                    return parseCSVToFatwasData(csvText);
-                }
-                
-                throw new Error('Unable to fetch from Google Sheets');
-            } catch (error) {
-                console.error('Error fetching from Google Sheets:', error);
-                return null;
-            }
+        // Sidebar Functions
+        function openSidebar() {
+            document.getElementById('sidebar').classList.add('active');
+            document.getElementById('sidebarOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        function parseCSVToFatwasData(csvText) {
-            // Parse CSV and convert to our data structure
-            const lines = csvText.split('\n');
-            const headers = lines[0].split(',');
-            
-            const data = [];
-            for (let i = 1; i < lines.length; i++) {
-                const values = lines[i].split(',');
-                if (values.length >= headers.length) {
-                    const item = {};
-                    headers.forEach((header, index) => {
-                        item[header.trim()] = values[index] ? values[index].trim() : '';
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('active');
+            document.getElementById('sidebarOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Modal Functions
+        function openModal(categoryName) {
+            const modal = document.getElementById('fatwaModal');
+            const modalTitle = document.getElementById('modalCategoryTitle');
+            const modalQuestionsContainer = document.getElementById('modalQuestionsContainer');
+
+            modalTitle.textContent = categoryName;
+            modalQuestionsContainer.innerHTML = '';
+
+            const selectedCategory = fatwasData.find(cat => cat.category === categoryName);
+
+            if (selectedCategory && selectedCategory.questions.length > 0) {
+                selectedCategory.questions.forEach(q => {
+                    const questionCard = document.createElement('div');
+                    questionCard.classList.add('modal-question-card');
+                    questionCard.innerHTML = `
+                        <h3 class="modal-question-text">${q.question} <i class="fas fa-chevron-down modal-expand-icon"></i></h3>
+                        <p class="modal-answer-text">${q.answer}</p>
+                        <div class="modal-question-meta">
+                            <span>المصدر: ${q.source}</span>
+                            <div class="modal-question-actions">
+                                <button class="modal-copy-btn" data-text="${q.question}\n\n${q.answer}\n\nالمصدر: ${q.source}${q.additional ? '\nمعلومات إضافية: ' + q.additional : ''}">
+                                    <i class="fas fa-copy"></i> نسخ
+                                </button>
+                                <button class="modal-share-btn" data-question="${q.question}" data-answer="${q.answer}">
+                                    <i class="fas fa-share-alt"></i> مشاركة
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    questionCard.addEventListener('click', function() {
+                        this.classList.toggle('expanded');
                     });
-                    data.push(item);
+
+                    const copyBtn = questionCard.querySelector('.modal-copy-btn');
+                    copyBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        copyToClipboard(this.dataset.text);
+                    });
+
+                    const shareBtn = questionCard.querySelector('.modal-share-btn');
+                    shareBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        shareFatwa(this.dataset.question, this.dataset.answer);
+                    });
+
+                    modalQuestionsContainer.appendChild(questionCard);
+                });
+            } else {
+                modalQuestionsContainer.innerHTML = '<p style="text-align: center; color: #64748b;">لا توجد فتاوى في هذا القسم حالياً.</p>';
+                if (isDarkMode) {
+                    modalQuestionsContainer.querySelector('p').style.color = '#94a3b8';
                 }
             }
-            
-            return convertToFatwasStructure(data);
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        function convertToFatwasStructure(rawData) {
-            // Convert raw data to our fatwa structure
-            // This would need to be customized based on the actual sheet structure
-            const categories = {};
-            
-            rawData.forEach(item => {
-                // Assuming the sheet has category information
-                const category = item.category || 'عام';
-                if (!categories[category]) {
-                    categories[category] = {
-                        category: category,
-                        icon: getCategoryIcon(category),
-                        questions: []
-                    };
-                }
-                
-                if (item.question && item.answer) {
-                    categories[category].questions.push({
-                        id: categories[category].questions.length + 1,
-                        question: item.question,
-                        answer: item.answer,
-                        source: item.source || 'مصدر غير محدد',
-                        additional: item.additional || ''
-                    });
-                }
+        function closeModal() {
+            const modal = document.getElementById('fatwaModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('تم نسخ الفتوى إلى الحافظة!');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                alert('فشل في نسخ الفتوى.');
             });
-            
-            return Object.values(categories);
         }
 
-        function getCategoryIcon(categoryName) {
-            const iconMap = {
-                'الطهارات': 'fas fa-hand-sparkles',
-                'أحكام الحائض والنفساء': 'fas fa-female',
-                'الوضوء ونواقضه': 'fas fa-tint',
-                'الغسل من الجنابة وأحكامه': 'fas fa-shower',
-                'القِبلة واللباس والسترة': 'fas fa-compass',
-                'الأوقات': 'fas fa-clock',
-                'الأذان والإقامة': 'fas fa-mosque',
-                'النية والتوجيه': 'fas fa-heart',
-                'الإستعاذة والقيام للصلاة': 'fas fa-praying-hands',
-                'القراءة': 'fas fa-book-open'
-            };
-            
-            return iconMap[categoryName] || 'fas fa-question-circle';
-        }
-
-        // Enhanced interactive features
-        async function copyToClipboard(question, answer) {
-            const text = `السؤال: ${question}\n\nالجواب: ${answer}`;
-            
-            try {
-                await navigator.clipboard.writeText(text);
-                showNotification('تم نسخ السؤال والجواب بنجاح', 'success');
-            } catch (err) {
-                // Fallback for older browsers
-                const textArea = document.createElement('textarea');
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                showNotification('تم نسخ السؤال والجواب بنجاح', 'success');
-            }
-        }
-
-        function shareQuestion(question, answer) {
-            const text = `السؤال: ${question}\n\nالجواب: ${answer}\n\nمن مكتبة الفتوى - المحراب`;
-            
+        function shareFatwa(question, answer) {
             if (navigator.share) {
                 navigator.share({
-                    title: 'مكتبة الفتوى - المحراب',
-                    text: text
-                }).catch(err => console.log('Error sharing:', err));
+                    title: 'فتوى من مكتبة الفتوى',
+                    text: `${question}\n\n${answer}`,
+                    url: window.location.href
+                }).then(() => {
+                    console.log('Thanks for sharing!');
+                }).catch(console.error);
             } else {
-                // Fallback: copy to clipboard
-                copyToClipboard(question, answer);
+                alert('ميزة المشاركة غير مدعومة في متصفحك. يمكنك نسخ النص يدوياً.');
             }
-        }
-
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.innerHTML = `
-                <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
-                ${message}
-            `;
-            
-            // Add notification styles if not already present
-            if (!document.querySelector('.notification-styles')) {
-                const style = document.createElement('style');
-                style.className = 'notification-styles';
-                style.textContent = `
-                    .notification {
-                        position: fixed;
-                        top: 100px;
-                        right: 20px;
-                        background: #10b981;
-                        color: white;
-                        padding: 15px 20px;
-                        border-radius: 10px;
-                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-                        z-index: 10000;
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                        animation: slideInRight 0.3s ease;
-                    }
-                    
-                    .notification.info {
-                        background: #3b82f6;
-                    }
-                    
-                    @keyframes slideInRight {
-                        from {
-                            transform: translateX(100%);
-                            opacity: 0;
-                        }
-                        to {
-                            transform: translateX(0);
-                            opacity: 1;
-                        }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideInRight 0.3s ease reverse';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
-
-        // Enhanced search with highlighting
-        function highlightSearchTerm(text, searchTerm) {
-            if (!searchTerm) return text;
-            
-            const regex = new RegExp(`(${searchTerm})`, 'gi');
-            return text.replace(regex, '<mark style="background: #fef08a; padding: 2px 4px; border-radius: 3px;">$1</mark>');
-        }
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            // Ctrl/Cmd + K to focus search
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                e.preventDefault();
-                document.getElementById('searchInput').focus();
-            }
-            
-            // Escape to close questions section
-            if (e.key === 'Escape') {
-                closeQuestionsSection();
-            }
-        });
-
-        // Auto-save search history
-        function saveSearchHistory(term) {
-            if (!term.trim()) return;
-            
-            let history = JSON.parse(localStorage.getItem('fatwasSearchHistory') || '[]');
-            history = history.filter(item => item !== term); // Remove if exists
-            history.unshift(term); // Add to beginning
-            history = history.slice(0, 10); // Keep only last 10
-            
-            localStorage.setItem('fatwasSearchHistory', JSON.stringify(history));
-        }
-
-        function loadSearchHistory() {
-            return JSON.parse(localStorage.getItem('fatwasSearchHistory') || '[]');
         }
     </script>
 </body>
